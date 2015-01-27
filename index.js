@@ -12,7 +12,12 @@ httpApp.use(express.static(__dirname + "/public/"));
 httpApp.use(bodyParser.urlencoded({ extended: true }));
 httpApp.use(bodyParser.json());
  
-var port = Number(process.env.PORT || 5000);
+httpApp.get('/', function(req, res)
+{
+  res.sendFile(__dirname + '/' + 'public/index.html');
+});
+
+var port = Number(process.env.PORT || 3000);
 webServer.listen(port, function(){
   console.log('listening on *:' + port);
 });
