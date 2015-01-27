@@ -1,0 +1,16 @@
+{
+  "name": "dataikuApp",
+  "version": "0.0.0",
+  "description": "Data management and visualization.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "author": "Baptiste Bohelay",
+  "license": "ISC",
+  "dependencies": {
+    "sqlite3": "^3.0.4",
+    "express": "^4.11.1",
+    "body-parser": "^1.10.2"
+  }
+}
