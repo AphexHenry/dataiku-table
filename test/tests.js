@@ -85,7 +85,7 @@ describe("arrayTool", function(){
   {
     var lArrayIn = {field1: {count: 3, age:10}, field2: {count: 1, age:30}, field3: {count: 33, age:76}};
     var larrayOut = arrayTool.makeCompactObjectIntoSortedArray(lArrayIn);
-    console.log(larrayOut);
+
     it("should make an array", function(){
       larrayOut.should.not.have.length(0);    
     });
@@ -97,4 +97,30 @@ describe("arrayTool", function(){
 
   });
 
+  describe('#cropAndRefine', function()
+  {
+    var lArrayIn = [];
+    for(var i = 0; i < 200; i++)
+    {
+      lArrayIn.push({name:'field', age:200, count:4});
+    }
+
+    var larrayOut = arrayTool.cropAndRefine(lArrayIn, 800);
+    it("should have length of max 100", function(){
+      expect(larrayOut.length > 100).to.be.false;  
+    });
+
+    it("make average of ages.", function(){
+      expect(larrayOut[0].age).to.equal(50);  
+    });
+  });
+
+  describe('#smartCropFloat', function()
+  {
+    it("should crop float after the first number if under 0", function(){
+      expect(arrayTool.smartCropFloat(10.1)).to.equal(10);
+      expect(arrayTool.smartCropFloat(10)).to.equal(10);
+      expect(arrayTool.smartCropFloat(0.00108)).to.equal(0.001);
+    });
+  });
 });

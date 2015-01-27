@@ -31,7 +31,7 @@ httpApp.post('/getData', function(req, res) {
 		}
 		else
 		{
-			res.send(arrayTool.getProcessedArray());
+			res.send(JSON.stringify(arrayTool.getProcessedArray());
 		}
 	});
 }

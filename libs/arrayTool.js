@@ -45,6 +45,38 @@ exports.makeCompactObjectIntoSortedArray = function(aObject)
 	return outAll;
 }
 
+exports.cropAndRefine = function(aArray, aTotalRowCount)
+{
+	console.log("crop ");
+	console.log(aArray);
+	var out = [];
+	for(i = 0; i < aArray.length; i++ )
+	{
+		var lPercent = this.smartCropFloat(100 * aArray[i].count / aTotalRowCount);
+
+		out.push({name:aArray[i].name, age:Math.round(aArray[i].age / aArray[i].count), count:lPercent});
+		if(out.length >= 100)
+		{
+			break;
+		}
+	}
+	return out;
+}
+
+exports.smartCropFloat = function(aValue)
+{
+	var lMult = 1;
+	if(aValue > 0)
+	{
+		var lFloatPos = Math.floor(Math.log(aValue) /  Math.LN10);
+		if(lFloatPos < 0)
+		{
+			lMult = Math.pow(10, -lFloatPos);
+		}
+	}
+	return Math.round(lMult * aValue) / lMult;
+}
+
 exports.getProcessedArray = function(aArray)
 {
 	return this.makeCompactObjectIntoSortedArray(this.compactArray(aArray));
