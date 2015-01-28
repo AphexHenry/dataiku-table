@@ -47,8 +47,6 @@ exports.makeCompactObjectIntoSortedArray = function(aObject)
 
 exports.cropAndRefine = function(aArray, aTotalRowCount)
 {
-	console.log("crop ");
-	console.log(aArray);
 	var out = [];
 	for(i = 0; i < aArray.length; i++ )
 	{
@@ -77,7 +75,8 @@ exports.smartCropFloat = function(aValue)
 	return Math.round(lMult * aValue) / lMult;
 }
 
-exports.getProcessedArray = function(aArray)
+exports.getProcessedArray = function(aArray, aColumnName)
 {
-	return this.makeCompactObjectIntoSortedArray(this.compactArray(aArray));
+	var lCompactArray = this.compactArray(aArray, aColumnName);
+	return this.cropAndRefine(this.makeCompactObjectIntoSortedArray(lCompactArray), aArray.length);
 }

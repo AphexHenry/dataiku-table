@@ -4,17 +4,42 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>dataiku</title>
+    <title>Dataiku App</title>
 
     <!-- Bootstrap -->
-    <link href="css/lib/bootstrap.min.css" rel="stylesheet"></link>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link href="css/main.css" rel="stylesheet"></link>
 
+  <!-- Optional theme -->
+    <link href="lib/select2/select2.min.css" />
+    <link href="lib/select2/select2-bootstrap.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
     <script src="js/main.js"></script>
 
-  <body  ng-app="mainModule">
-    Dataiku App.
-    
+<body>
+  <div  ng-app="mainModule">
+    <div ng-controller="InputController" data-ng-init="init()">
+
+      <form name="columnNameForm">
+        <select data-ng-change="onChange()" data-ng-model="data"
+                data-ng-options="value.name for value in fields track by value.name">                
+        </select>
+      </form>
+
+      <table class="table table-bordered">
+        <tr ng-repeat="x in names " ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+            <td>{{ x.name }}</td>
+            <td>{{ x.age }}</td>
+            <td>{{ x.count }}%</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
   </body>
 </html>
