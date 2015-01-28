@@ -1,7 +1,10 @@
 # dataiku-table
-Node.js app displaying baked datas from .db file
+Node.js single page app displaying processed datas from a .db file.
 
 Install Node.js -> http://nodejs.org/
-<br>in dataiku-table directory
+<br>Open Terminal.
+<br>In dataiku-table directory:
 <br>$npm install
+<br>$node index.js
+<br>Open client at port 3000 : http://localhost:3000/
 
