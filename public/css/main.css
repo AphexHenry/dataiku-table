@@ -5,10 +5,48 @@ table, th , td {
   padding: 5px;
 }
 table tr:nth-child(odd) {
-  background-color: #f1f1f1;
+  background-color: #ffffff;
 }
 table tr:nth-child(even) {
-  background-color: #ffffff;
+  background-color: #f1f1f1;
+}
+
+#tableMain
+{
+  position:relative;
+  left:20%;
+  width:80%;
+}
+
+.firstColumn
+{
+  border:20%;
+  width:50%;
+}
+
+.secondColumn
+{
+  width:25%;
+}
+
+.thirdColumn
+{
+  width:25%;
+}
+
+tr {
+width: 100%;
+display: inline-table;
+}
+
+table{
+ height:300px; 
+}
+tbody{
+  overflow-y: scroll;
+  height: 70vh;
+  width: 100%;
+  position: absolute;
 }
 
 select {
@@ -23,15 +61,5 @@ select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-}
-
-.animate-enter {
-  -webkit-transition: 1s linear all; /* Chrome */
-  transition: 1s linear all;
-  opacity: 0;
-}
- 
-.animate-enter.animate-enter-active {
-  opacity: 1;
 }
 </style>

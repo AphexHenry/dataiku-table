@@ -10,6 +10,7 @@ angular.module("mainModule", [])
     };
 
     $scope.init = function () {
+        // get the list of all available input fields in the db.
         $.get( "/getList", function( data ) {
           $scope.fields = JSON.parse(data);
            $scope.$apply();
@@ -19,6 +20,7 @@ angular.module("mainModule", [])
     $scope.onChange = function ()
     {
       var lData = angular.copy($scope.data);
+      // get the table datas.
       $http.post("/getData", lData)
         .success(function (data, status, headers, config)
         {
@@ -29,4 +31,13 @@ angular.module("mainModule", [])
           console.log("something else error");
         });
       }
+});
+
+
+jQuery(function($) {
+    $('#tableMainBody').bind('scroll', function() {
+        if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+            
+        }
+    })
 });
