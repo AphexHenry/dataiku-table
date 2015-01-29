@@ -15,6 +15,7 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="libs/spin.min.js"></script>
 
     <script src="js/main.js"></script>
 
@@ -23,23 +24,25 @@
     <div ng-controller="InputController" data-ng-init="init()">
       
       <!-- field input form -->
-      <form name="columnNameForm">
-        <select data-ng-change="onChange()" data-ng-model="data"
-                data-ng-options="value.name for value in fields track by value.name">                
-        </select>
-      </form>
+      <div id="inputForm">
+        <form name="columnNameForm">
+          <select data-ng-change="onChange()" data-ng-model="data" data-ng-disabled="loading" data-ng-model="disableTable"
+                  data-ng-options="value.name for value in fields track by value.name">                
+          </select>
+        </form>
+      </div>
 
       <!-- fixed header table -->
-      <table id="tableMain" class="table table-fixedheader">
+      <table id="tableMain" class="table table-fixedheader" ng-style="tableStyle">
       <thead>
         <tr>
           <th class="firstColumn">{{data.name}}</th>
           <th class="secondColumn">average age</th> 
-          <th class="thirdColumn">percent</th>
+          <th class="thirdColumn">percent of population</th>
         </tr>
       </thead>
         <tbody id="tableMainBody">
-          <tr ng-repeat="x in names ">
+          <tr data-ng-repeat="x in names ">
             <td class="firstColumn">{{ x.name }}</td>
             <td class="secondColumn">{{ x.age }}</td>
             <td class="thirdColumn">{{ x.count }}%</td>
@@ -48,6 +51,5 @@
       </table>
     </div>
   </div>
-
-  </body>
+</body>
 </html>
