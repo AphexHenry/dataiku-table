@@ -34,7 +34,7 @@ exports.getAllColumnNames = function(aCallback)
 
 exports.getColumnWithName = function(aName, aCallback)
 {
-	 db.all("SELECT `" + aName + "` , age FROM census_learn_sql", function(err, data) {
+	 db.all("SELECT `" + aName + "` AS 'name' , age FROM census_learn_sql", function(err, data) {
 	 	aCallback(data);
 	});
 }

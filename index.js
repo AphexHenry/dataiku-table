@@ -15,6 +15,7 @@ httpApp.use(express.static(__dirname + "/public/"));
 httpApp.use(bodyParser.urlencoded({ extended: true }));
 httpApp.use(bodyParser.json());
 
+// setup the db
 db.setup("us-census.db", function()
 {
 	httpApp.get('/', function(req, res)
@@ -23,11 +24,9 @@ db.setup("us-census.db", function()
 	});
 
 	httpApp.post('/getData', function(req, res) {
-		var lColumnName = req.body.name;
-		db.getColumnWithName(lColumnName, function(aData)
+		db.getColumnWithName(req.body.name, function(aData)
 		{
-			var rData = arrayTool.getProcessedArray(aData, lColumnName);
-			console.log(rData);
+			var rData = arrayTool.getProcessedArray(aData);
 			res.send(JSON.stringify(rData));
 		});
 	});
@@ -36,6 +35,12 @@ db.setup("us-census.db", function()
 	{
 		db.getAllColumnNames(function(aData)
 		{
+			aData.sort(function(a, b){
+			    if(a.name < b.name) return -1;
+			    if(a.name > b.name) return 1;
+			    return 0;
+			});
+
 			res.send(JSON.stringify(aData));
 		});
 	});

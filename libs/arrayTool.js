@@ -3,21 +3,22 @@
  * contain array management functions.
  */
 
-exports.compactArray = function(aArray, aColumnName)
+exports.compactArray = function(aArray)
 {
 	// we create an object and not an array for easier access to its member.
 	var temp = {};
 	var lTempSize = 0;
+	var lColumnName = "name";
 	for(var i in aArray)
 	{
-		var lOutIndex = aArray[i][aColumnName];
+		var lOutIndex = aArray[i][lColumnName];
 		if(temp[lOutIndex]== null)
 		{
-			temp[aArray[i][aColumnName]]  = {age:0, count:0};
+			temp[aArray[i][lColumnName]]  = {age:0, count:0};
 		}
 
-		temp[aArray[i][aColumnName]].age += aArray[i].age;
-		temp[aArray[i][aColumnName]].count++;
+		temp[aArray[i][lColumnName]].age += aArray[i].age;
+		temp[aArray[i][lColumnName]].count++;
 		lTempSize++;
 	}
 	return temp;
@@ -75,8 +76,8 @@ exports.smartCropFloat = function(aValue)
 	return Math.round(lMult * aValue) / lMult;
 }
 
-exports.getProcessedArray = function(aArray, aColumnName)
+exports.getProcessedArray = function(aArray)
 {
-	var lCompactArray = this.compactArray(aArray, aColumnName);
+	var lCompactArray = this.compactArray(aArray);
 	return this.cropAndRefine(this.makeCompactObjectIntoSortedArray(lCompactArray), aArray.length);
 }

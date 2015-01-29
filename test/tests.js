@@ -35,11 +35,11 @@ describe("dbWrapper", function(){
    });
 
     describe("#getColumnWithName()", function(){
-       it("should array of objects with fields 'age', 'field1'", function(done){
+       it("should array of objects with fields 'age', 'name'", function(done){
            db.getColumnWithName("field1", function(data)
             {
               expect(data[0].age).to.exist();
-              expect(data[0]['field1']).to.exist();
+              expect(data[0].name).to.exist();
               done();
             });
        });
@@ -58,8 +58,8 @@ describe("arrayTool", function(){
 
   describe('#compactArray', function()
   {
-    var lArrayIn = [{columnName:'field1', age:10}, {columnName:'field2', age:10}, {columnName:'field1', age:20}];
-    var larrayOut = arrayTool.compactArray(lArrayIn, 'columnName');
+    var lArrayIn = [{name:'field1', age:10}, {name:'field2', age:10}, {name:'field1', age:20}];
+    var larrayOut = arrayTool.compactArray(lArrayIn);
     it("should reduce the size if a fiels appear more than once", function(){
       var lCount = 0;
       for(var i in larrayOut)
