@@ -23,33 +23,46 @@
   <div  ng-app="mainModule">
     <div ng-controller="InputController" data-ng-init="init()">
       
-      <!-- field input form -->
-      <div id="inputForm">
-        <form name="columnNameForm">
-          <select data-ng-change="onChange()" data-ng-model="data" data-ng-disabled="loading" data-ng-model="disableTable"
-                  data-ng-options="value.name for value in fields track by value.name">                
-          </select>
-        </form>
-      </div>
+      <div id="headerApp"></div>
+      <div id="bodyApp">
+        <!-- field input form -->
+        <div id="inputForm" style="width:20%; float: left;" data-ng-disabled="loading">
+          <form name="columnNameForm">
+            <!-- search bar -->
+            <div class="has-feedback">
+              <i class="glyphicon glyphicon-search form-control-feedback"></i>
+              <input type="text" class="form-control" ng-model="filterText" placeholder="filter"/>
+            </div>
+            <!-- input list -->
+            <ul class="list-group" id="inputList">
+              <li ng-repeat="x in fields | filter:filterText">
+                <a href = "" class="list-group-item inputListElement" ng-click="onChange(x.name)">{{ x.name }}</a>
+              </li>
+              <br>
+            </ul>
+          </form>
+        </div>
 
-      <!-- fixed header table -->
-      <table id="tableMain" class="table table-fixedheader" ng-style="tableStyle">
-      <thead>
-        <tr>
-          <th class="firstColumn">{{data.name}}</th>
-          <th class="secondColumn">average age</th> 
-          <th class="thirdColumn">percent of population</th>
-        </tr>
-      </thead>
-        <tbody id="tableMainBody">
-          <tr data-ng-repeat="x in names ">
-            <td class="firstColumn">{{ x.name }}</td>
-            <td class="secondColumn">{{ x.age }}</td>
-            <td class="thirdColumn">{{ x.count }}%</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+        <!-- fixed header table -->
+        <table id="tableMain" class="table table-fixedheader" ng-style="tableStyle">
+        <thead>
+          <tr>
+            <th class="firstColumn">{{data.name}}</th>
+            <th class="secondColumn">average age</th> 
+            <th class="thirdColumn">percent of population</th>
+          </tr> 
+        </thead>
+          <tbody id="tableMainBody">
+            <tr data-ng-repeat="x in names ">
+              <td class="firstColumn">{{ x.name }}</td>
+              <td class="secondColumn">{{ x.age }}</td>
+              <td class="thirdColumn">{{ x.count }}%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> <!-- #bodyApp -->
+    </div> <!-- ng-controller InputController -->
+  </div> <!-- ng-app mainModule -->
+  <div id="footer">
 </body>
 </html>

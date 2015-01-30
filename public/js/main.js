@@ -12,7 +12,7 @@ angular.module("mainModule", [])
     $scope.fields = [{name:"loading datas..."}];
 
     $scope.data = {
-        name: "",
+        name: "select field"
     };
     $scope.loading = false;
 
@@ -24,18 +24,28 @@ angular.module("mainModule", [])
         });
     }
 
-    $scope.onChange = function ()
+    $scope.onChange = function (aName)
     {
+      if(aName == $scope.data.name)
+      {
+        return;
+      } 
+
+      $scope.data.name = aName;
+
       loadingSpinner.spin($('body')[0]);
       $scope.tableStyle = {opacity:'0.4'};
+
       $scope.loading = true;
+      DisableInput(true);
+
       var lData = angular.copy($scope.data);
 
       // get the table datas.
       $http.post("/getData", lData)
         .success(function (data, status, headers, config)
         {
-          $scope.loading = false;
+          DisableInput(false);
           $scope.tableStyle = {opacity:'1'};
           loadingSpinner.stop();
           $scope.names = data;
@@ -53,6 +63,19 @@ jQuery(function($) {
     SetupRowCountDisplay();
     SetupSpinner();
 });
+
+function DisableInput(aValue)
+{
+  // if(aValue)
+  // {
+  //   $(".inputListElement").addClass("disabled");
+  // }
+  // else
+  // {
+  //   $(".inputListElement").removeClass("disabled");
+  // }
+}
+
 
 /*
  *  Will display the number of row not shown when reach the end of the scrolling table.
