@@ -14,6 +14,10 @@ angular.module("mainModule", [])
     $scope.data = {
         name: "select field"
     };
+
+    $scope.names = [];
+    $scope.totalLength = 0;
+
     $scope.loading = false;
 
     $scope.init = function () {
@@ -48,7 +52,8 @@ angular.module("mainModule", [])
           DisableInput(false);
           $scope.tableStyle = {opacity:'1'};
           loadingSpinner.stop();
-          $scope.names = data;
+          $scope.totalLength = data.totalLength;
+          $scope.names = data.array;
         })
         .error(function (data, status, headers, config)
         {

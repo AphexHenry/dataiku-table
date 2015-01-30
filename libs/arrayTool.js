@@ -54,6 +54,7 @@ exports.cropAndRefine = function(aArray, aTotalRowCount)
 		var lPercent = this.smartCropFloat(100 * aArray[i].count / aTotalRowCount);
 
 		out.push({name:aArray[i].name, age:Math.round(aArray[i].age / aArray[i].count), count:lPercent});
+		// we only show the 100 first results.
 		if(out.length >= 100)
 		{
 			break;
@@ -76,8 +77,9 @@ exports.smartCropFloat = function(aValue)
 	return Math.round(lMult * aValue) / lMult;
 }
 
-exports.getProcessedArray = function(aArray)
+exports.getProcessedArray = function(aArray, aCallback)
 {
-	var lCompactArray = this.compactArray(aArray);
-	return this.cropAndRefine(this.makeCompactObjectIntoSortedArray(lCompactArray), aArray.length);
+	var lCompactArray = this.makeCompactObjectIntoSortedArray(this.compactArray(aArray));
+	var rArray = this.cropAndRefine(lCompactArray, aArray.length);
+	aCallback(rArray, lCompactArray.length);
 }

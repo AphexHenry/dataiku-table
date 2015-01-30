@@ -26,8 +26,12 @@ db.setup("us-census.db", function()
 	httpApp.post('/getData', function(req, res) {
 		db.getColumnWithName(req.body.name, function(aData)
 		{
-			var rData = arrayTool.getProcessedArray(aData);
-			res.send(JSON.stringify(rData));
+			arrayTool.getProcessedArray(aData, function(aArrayOut, aTotalCount)
+			{
+				var lOutObj = {totalLength:aTotalCount, array:aArrayOut};
+				res.send(JSON.stringify(lOutObj));		
+			});
+			
 		});
 	});
 
