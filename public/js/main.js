@@ -60,7 +60,6 @@ angular.module("mainModule", [])
 
 
 jQuery(function($) {
-    SetupRowCountDisplay();
     SetupSpinner();
 });
 
@@ -74,23 +73,6 @@ function DisableInput(aValue)
   {
     $(".inputListElement").removeClass("disabled");
   }
-}
-
-
-/*
- *  Will display the number of row not shown when reach the end of the scrolling table.
- */
-function SetupRowCountDisplay()
-{
-    $('#tableMainBody').bind('scroll', function() {
-        if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
-            
-        }
-        else
-        {
-
-        }
-    })
 }
 
 /*
