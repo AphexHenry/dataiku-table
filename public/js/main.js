@@ -66,14 +66,14 @@ jQuery(function($) {
 
 function DisableInput(aValue)
 {
-  // if(aValue)
-  // {
-  //   $(".inputListElement").addClass("disabled");
-  // }
-  // else
-  // {
-  //   $(".inputListElement").removeClass("disabled");
-  // }
+  if(aValue)
+  {
+    $(".inputListElement").addClass("disabled");
+  }
+  else
+  {
+    $(".inputListElement").removeClass("disabled");
+  }
 }
 
 
