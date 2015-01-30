@@ -11,8 +11,12 @@ exports.setup = function(aName, aCallback)
 	}
 	else
 	{
-		aCallback(null);
 		db = new sqlite3.Database(aName);
+		db.serialize(function() {
+			// remove every invalid row.
+			db.run("DELETE FROM census_learn_sql WHERE age IS NULL;")
+			aCallback(null);
+		});
 	}
 }
 
