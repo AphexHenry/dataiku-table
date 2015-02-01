@@ -1,6 +1,4 @@
 var app = angular.module('MyApp', []);
-// loading icon.
-var loadingSpinner;
 
 /*
  *  Angular.
@@ -37,7 +35,6 @@ angular.module("mainModule", [])
 
       $scope.data.name = aName;
 
-      loadingSpinner.spin($('body')[0]);
       $scope.tableStyle = {opacity:'0.4'};
 
       $scope.loading = true;
@@ -51,7 +48,7 @@ angular.module("mainModule", [])
         {
           DisableInput(false);
           $scope.tableStyle = {opacity:'1'};
-          loadingSpinner.stop();
+          $scope.loading = false;
           $scope.totalLength = data.totalLength;
           $scope.names = data.array;
         })
@@ -61,11 +58,6 @@ angular.module("mainModule", [])
           console.log("something else error");
         });
       }
-});
-
-
-jQuery(function($) {
-    SetupSpinner();
 });
 
 function DisableInput(aValue)
@@ -78,19 +70,4 @@ function DisableInput(aValue)
   {
     $(".inputListElement").removeClass("disabled");
   }
-}
-
-/*
- *  Setup the loading spinner.
- */
-function SetupSpinner()
-{
-      var opts = {
-      radius: 5,
-      width: 2, // The line thickness
-      color: '#777', // #rgb or #rrggbb or array of colors
-  };
-
-  loadingSpinner = new Spinner(opts).spin($('#tableMainBody')[0]);
-  loadingSpinner.stop();
 }
