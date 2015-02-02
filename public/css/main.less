@@ -1,16 +1,6 @@
-<style>
-
-
 table, th , td {
-  border: 1px solid grey;
   border-collapse: collapse;
   padding: 5px;
-}
-table tr:nth-child(odd) {
-  background-color: #ffffff;
-}
-table tr:nth-child(even) {
-  background-color: #f1f1f1;
 }
 
 tr {
@@ -36,6 +26,13 @@ select {
     appearance: none;
 }
 
+@dark: #bbb;
+@bright: #eee;
+@sizeLeft: 20%;
+@sizeRight:100% - @sizeLeft;
+@heightHeader:15vh;
+@heightFooter:5vh;
+
 #inputForSmallScreens
 {
   display: none;
@@ -46,10 +43,10 @@ select {
 
 #inputForm
 {
-  background-color:#eee;
-  height:85vh;
-  border-right: 1px solid #bbb;
-  width:20%;
+  background-color:@bright;
+  height:100vh - @heightHeader - @heightFooter;
+  border-right: 1px solid @dark;
+  width:@sizeLeft;
   float: left;
 }
 
@@ -74,37 +71,36 @@ select {
 
 #tableMain
 {
-  width:80%;
+  width:@sizeRight;
 }
 
 #tableMainBody
 {
   background-color: #fff;
-  width:80%;
+  width:@sizeRight;
 }
 
 #headerApp
 {
-  background: -webkit-linear-gradient(#f9f9f9, #f0f0f0); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#f9f9f9, #f0f0f0); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#f9f9f9, #f0f0f0); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#f9f9f9, #f0f0f0); /* Standard syntax */
+  background: -webkit-linear-gradient(#f9f9f9, @bright); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#f9f9f9, @bright); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#f9f9f9, @bright); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#f9f9f9, @bright); /* Standard syntax */
 
-  height:15vh;
-  border-bottom: 1px solid #bbb;
+  height:@heightHeader;
+  border-bottom: 1px solid @dark;
   text-align: center;
-  padding-top: 0vh;
-  color:#699; 
+  color:#79a; 
 }
 
 #footer
 {
   position:absolute;
-  height:5vh;
+  height:@heightFooter;
   width:100%;
   bottom: 0px;
-  background-color: #eee;
-  border-top: 1px solid #bbb;
+  background-color: @bright;
+  border-top: 1px solid @dark;
   color:#666;
   text-align: center;
 }
@@ -131,19 +127,16 @@ select {
       width: 100%;
     }
 
+    //99% so the element doesnt get moved to the botton.
+    //might be a better way to do it.
     #tableMain
     {
-      width: 99%;
-    }
-
-    #title
-    {
-      float:left;
+      width: 100% - 1px;
     }
 }
 
 body{
-  background-color: #eee;
+  background-color: @bright;
 }
 
 .firstColumn
@@ -160,6 +153,3 @@ body{
 {
   width:25%;
 }
-
-
-</style>
