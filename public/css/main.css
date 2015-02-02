@@ -24,11 +24,40 @@ tbody{
   position: absolute;
 }
 
+select {
+    background: #ffffff;
+    width: 100px;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    height: 34px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+#inputForSmallScreens
+{
+  display: none;
+  margin-top: 2vh;
+  margin-right: 10px;
+  float: right;
+}
+
 #inputForm
 {
   background-color:#eee;
   height:85vh;
   border-right: 1px solid #bbb;
+  width:20%;
+  float: left;
+}
+
+#title
+{
+  margin-left: 5%;
+  padding-top: 2vh;
+  float:left;
 }
 
 #inputList
@@ -64,7 +93,7 @@ tbody{
   height:15vh;
   border-bottom: 1px solid #bbb;
   text-align: center;
-  padding-top: 2vh;
+  padding-top: 0vh;
   color:#699; 
 }
 
@@ -78,6 +107,43 @@ tbody{
   border-top: 1px solid #bbb;
   color:#666;
   text-align: center;
+}
+
+@media (max-width: 500px) 
+{
+    #inputForSmallScreens
+    {
+      display: block;
+    } 
+
+    #inputForBigScreens
+    {
+      display: none;
+    }
+
+    #inputForm
+    {
+      width:0%;
+    }
+
+    #tableMainBody
+    {
+      width: 100%;
+    }
+
+    #tableMain
+    {
+      width: 99%;
+    }
+
+    #title
+    {
+      float:left;
+    }
+}
+
+body{
+  background-color: #eee;
 }
 
 .firstColumn

@@ -8,8 +8,8 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link href="css/main.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="css/main.css" rel="stylesheet"></link>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
@@ -24,29 +24,40 @@
     <div ng-controller="InputController" data-ng-init="init()">
       
       <div id="headerApp">
-        <h3><strong>population explorer<strong></h3>
+        <h3 id="title"><strong>population explorer</strong></h3>
+            <!-- <select> input for small screens. -->
+            <div id="inputForSmallScreens">
+              <select data-ng-change="onChange(smallInputModel.name)" data-ng-model="smallInputModel" data-ng-disabled="loading" data-ng-model="disableTable"
+                      data-ng-options="value.name for value in fields track by value.name">                
+              </select>
+            </div>
       </div>
 
       <div id="bodyApp">
         <!-- Loading icon. Use Font Awesome. -->
         <i id="loaderIcon" class="fa fa-circle-o-notch fa-spin fa-2x" style="position:absolute; left:50%; top:50%;" data-ng-show="loading"></i>
         <!-- field input form -->
-        <div id="inputForm" style="width:20%; float: left;" data-ng-disabled="loading">
+        <div id="inputForm" data-ng-disabled="loading">
           <form name="columnNameForm">
-            <!-- search bar -->
-            <div class="has-feedback">
-              <i class="glyphicon glyphicon-search form-control-feedback"></i>
-              <input type="text" class="form-control" ng-model="filterText" placeholder="filter"/>
+
+            <!-- <filtered list of buttons> input for big screens. -->
+            <div id="inputForBigScreens">
+              <!-- search bar -->
+              <div class="has-feedback">
+                <i class="glyphicon glyphicon-search form-control-feedback"></i>
+                <input type="text" class="form-control" ng-model="filterText" placeholder="filter"/>
+              </div>
+              <!-- input list -->
+              <ul class="list-group" id="inputList">
+                <li ng-repeat="x in fields | filter:filterText">
+                  <a href = "" class="list-group-item inputListElement" ng-click="onChange(x.name)">{{ x.name }}</a>
+                </li>
+                <br>
+              </ul>
             </div>
-            <!-- input list -->
-            <ul class="list-group" id="inputList">
-              <li ng-repeat="x in fields | filter:filterText">
-                <a href = "" class="list-group-item inputListElement" ng-click="onChange(x.name)">{{ x.name }}</a>
-              </li>
-              <br>
-            </ul>
           </form>
         </div>
+
         <!-- fixed header table -->
         <table id="tableMain" class="table table-fixedheader" ng-style="tableStyle">
         <thead>
@@ -66,9 +77,10 @@
         </table>
       </div> <!-- #bodyApp -->
       <div id="footer">
-          <h5>{{names.length}} results on a total of {{totalLength}}</h5>
+          <h5 style="float:center">{{names.length}} results on a total of {{totalLength}}</h5>
+          <h5 style="position: absolute; bottom:0px; right:10px; text-shadow: 2px 1px #fff; color:#333">Baptiste Bohelay, 2015</h5>
       </div> <!-- #footer -->
-      <!-- <h5 style="position: absolute; bottom:0px; right:10px; text-shadow: 2px 1px #333; color:white">Baptiste Bohelay, 2015</h5> -->
+      
     </div> <!-- ng-controller InputController -->
   </div> <!-- ng-app mainModule -->
   <a href="https://github.com/AphexHenry/dataiku-table"><img style="position: absolute; top: 0; right: 0; border: 0; width:8%;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
